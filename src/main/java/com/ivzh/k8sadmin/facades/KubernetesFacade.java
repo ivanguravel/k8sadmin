@@ -26,10 +26,10 @@ public class KubernetesFacade {
 
     public DeploymentDto create(String namespace, DeploymentDto dto, boolean doUseStorage) {
         if (doUseStorage) {
-            k8sOperations.values().stream().forEach(service -> service.create(dto, namespace));
+            k8sOperations.values().stream().forEach(service -> service.create(namespace, dto));
             return  dto;
         }  else {
-            return k8sOperations.get(K8S).create(dto, namespace);
+            return k8sOperations.get(K8S).create(namespace, dto);
         }
     }
 

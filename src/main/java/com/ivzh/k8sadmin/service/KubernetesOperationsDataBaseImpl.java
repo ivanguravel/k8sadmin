@@ -8,18 +8,19 @@ import java.util.Set;
 
 @Service(Constants.AdminServiceFunctionality.DB)
 public class KubernetesOperationsDataBaseImpl implements KubernetesOperations {
+
     @Override
     public Set<DeploymentDto> get(String namespace) {
         return null;
     }
 
     @Override
-    public DeploymentDto get(String service, String namespace) {
+    public DeploymentDto get(String namespace, String deployment) {
         return null;
     }
 
     @Override
-    public DeploymentDto create(DeploymentDto dto, String namespace) {
+    public DeploymentDto create(String namespace, DeploymentDto dto) {
         return null;
     }
 }
