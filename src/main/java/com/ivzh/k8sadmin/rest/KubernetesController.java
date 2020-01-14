@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-@RestController("/deployments/{namespace}")
+@RestController
+@RequestMapping("/deployments/{namespace}")
 public class KubernetesController {
 
     @Autowired

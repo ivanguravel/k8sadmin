@@ -17,9 +17,9 @@ public class DeploymentDto {
         dto.setName(deployment.getMetadata().getName());
         dto.setReplica(deployment.getSpec().getReplicas());
 
-        Container container = Utils.getFirstOrThrow(deployment.getSpec().getTemplate().getSpec().getContainers());
-        dto.setDockerImage(container.getImage());
-        dto.setPort(Utils.getFirstOrThrow(container.getPorts()).getContainerPort());
+        //Container container = Utils.getFirstOrThrow(deployment.getSpec().getTemplate().getSpec().getContainers());
+        //dto.setDockerImage(container.getImage());
+        //dto.setPort(Utils.getFirstOrThrow(container.getPorts()).getContainerPort());
 
         return dto;
     }
