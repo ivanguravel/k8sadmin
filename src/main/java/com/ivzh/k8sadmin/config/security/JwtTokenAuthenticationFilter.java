@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 
 @WebFilter
 @Order(1)
@@ -34,6 +35,8 @@ public class JwtTokenAuthenticationFilter extends GenericFilterBean {
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
+        } else {
+            throw new AccessDeniedException("can't authorize user");
         }
         filterChain.doFilter(req, res);
     }
