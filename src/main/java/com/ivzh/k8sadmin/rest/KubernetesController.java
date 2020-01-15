@@ -1,7 +1,7 @@
 package com.ivzh.k8sadmin.rest;
 
 import com.ivzh.k8sadmin.dto.DeploymentDto;
-import com.ivzh.k8sadmin.facades.KubernetesFacade;
+import com.ivzh.k8sadmin.facade.KubernetesFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

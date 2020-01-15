@@ -1,4 +1,4 @@
-package com.ivzh.k8sadmin.facade;
+package com.ivzh.k8sadmin.service;
 
 import com.ivzh.k8sadmin.domain.StoredDeployment;
 import com.ivzh.k8sadmin.dto.DeploymentDto;

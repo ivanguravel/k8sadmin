@@ -1,10 +1,11 @@
 package com.ivzh.k8sadmin.facade;
 
 import com.ivzh.k8sadmin.dto.DeploymentDto;
-import com.ivzh.k8sadmin.facades.KubernetesFacade;
+import com.ivzh.k8sadmin.facade.KubernetesFacade;
+import com.ivzh.k8sadmin.service.KubernetesService;
+import com.ivzh.k8sadmin.service.StoredDeploymentService;
 import com.ivzh.k8sadmin.util.Constants;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
