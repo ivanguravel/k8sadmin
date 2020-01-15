@@ -11,9 +11,9 @@ import org.springframework.web.context.request.WebRequest;
 @Slf4j
 public class RestExceptionHandler {
 
-    //@ExceptionHandler(value = {Exception.class})
+    @ExceptionHandler(value = {Exception.class})
     public ResponseEntity handler(Exception e, WebRequest request) {
-        //log.debug(String.format("Handling...", e.getMessage()));
+        log.debug(String.format("Handling...", e.getMessage()));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
 }

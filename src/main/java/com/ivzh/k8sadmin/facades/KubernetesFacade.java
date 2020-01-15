@@ -20,12 +20,13 @@ public class KubernetesFacade {
         return getKubernetesServiceByCondition(doUseStorage).get(namespace);
     }
 
-    public DeploymentDto get(String namespace, String deployment, boolean doUseStored) {
-        return getKubernetesServiceByCondition(doUseStored).get(deployment, namespace);
+    public DeploymentDto get(String namespace, String deployment, boolean doUseStorage) {
+        return getKubernetesServiceByCondition(doUseStorage).get(deployment, namespace);
     }
 
     public DeploymentDto create(String namespace, DeploymentDto dto, boolean doUseStorage) {
         if (doUseStorage) {
+            // create service in the db and store it's original config inside DB
             k8sOperations.values().stream().forEach(service -> service.create(namespace, dto));
             return  dto;
         }  else {
@@ -35,6 +36,7 @@ public class KubernetesFacade {
 
     private KubernetesOperations getKubernetesServiceByCondition(boolean doUseStorage) {
         String serviceName = doUseStorage ? DB : K8S;
+        // some sort of modern Strategy pattern approach with helps Spring framework
         return k8sOperations.get(serviceName);
     }
 }
