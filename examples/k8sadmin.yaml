@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8sadmin
+  namespace: sysns
+  labels:
+    app: k8sadmin
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: k8sadmin
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8sadmin
+  namespace: sysns
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  k8sadmin
+        version: v1
+    spec:
+      serviceAccountName: sysns
+      containers:
+        - image: ivzh/k8sadmin:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          name: hello
+          ports:
+            - containerPort: 8080
+          env:
+            - name: KUBERNETES_AUTH_TRYSERVICEACCOUNT
+              value: "true"

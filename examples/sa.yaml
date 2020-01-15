@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sysns
+  namespace: sysns
+---
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sysns
+rules:
+  - apiGroups: [""] # "" indicates the core API group
+    resources: ["*"]
+    verbs: ["*"]
+  - apiGroups: ["extensions", "apps", "rbac.authorization.k8s.io", "authorization.k8s.io"]
+    resources: ["*"]
+    verbs: ["*"]
+---
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sysns-binding
+subjects:
+  - kind: ServiceAccount
+    name: sysns
+    namespace: sysns
+roleRef:
+  kind: ClusterRole
+  name: sysns
+  apiGroup: rbac.authorization.k8s.io
