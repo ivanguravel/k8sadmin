@@ -1,9 +1,9 @@
 # k8sadmin
 
-## admin rest api for k8s clusters.
+## admin rest api for k8s clusters. 
 
 ###How to build docker image: 
-`mvn clean install && mvn dockerfile:build`
+`mvn clean install`
 
 ###Execution modes:
 - Local mode: one way - download your own k8s config from cluster and provide it as a mounted volume

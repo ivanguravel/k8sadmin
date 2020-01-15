@@ -27,7 +27,6 @@ public class JwtTokenAuthenticationFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
-
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
         if (token != null && jwtTokenProvider.validateToken(token)) {
             Authentication auth = jwtTokenProvider.getAuthentication(token);
@@ -35,10 +34,11 @@ public class JwtTokenAuthenticationFilter extends GenericFilterBean {
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
-        } else {
+        } else if (!((HttpServletRequest) req).getServletPath().contains("auth/signin")) {
             throw new AccessDeniedException("can't authorize user");
+        } else {
+            filterChain.doFilter(req, res);
         }
-        filterChain.doFilter(req, res);
     }
 
 }
