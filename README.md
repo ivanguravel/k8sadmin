@@ -4,6 +4,8 @@
 ## This app can get/create deployments in the k8s cluster and also get persist deployment samples from H2 db
 ## H2 used as cache for your deployments history
 
+##Main diagram
+- ![diagram](pictures/diagram.png "diagram")
 ### Users:
 `user\password` - can list deployments;
 `admin\password` - can list and create deployments
@@ -66,12 +68,12 @@ Response:
 
 3) get detailed information about service:
 ```
-curl -H "Authorization: eyJhb"  http://0.0.0.0:8080/deployments/default/nginx
+curl -H "Authorization: eyJhb..."  http://0.0.0.0:8080/deployments/default/nginx
 ```
 
 4) create service(requires `admin` access token)
 ```
-curl -H "Authorization: eyJhb"  http://localhost:8080/deployments/default/nginx
+curl -H "Authorization: eyJhb..."  http://localhost:8080/deployments/default/nginx
 ```
 
 5) 
