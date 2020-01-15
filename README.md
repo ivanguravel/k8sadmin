@@ -4,6 +4,10 @@
 ## This app can get/create deployments in the k8s cluster and also get persist deployment samples from H2 db
 ## H2 used as cache for your deployments history
 
+### Users:
+`user\password` - can list deployments;
+`admin\password` - can list and create deployments
+
 ###How to build docker image: 
 `mvn clean install`
 
@@ -29,15 +33,45 @@ There are 2 examples: postman collection in `examples\k8sadmin.json` and curl st
 
 1) Login:
 ``` 
-curl -X POST http://localhost:8080/auth/signin -H "Content-Type:application/json" -d "{\"username\":\"user\", \"password\":\"password\"}"
+curl -X POST http://localhost:8080/signin -H "Content-Type:application/json" -d "{\"username\":\"admin\", \"password\":\"password\"}"
 ```
 
 Response could be: 
 ```
-{"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTU3OTA5ODYyNSwiZXhwIjoxNTc5MTAyMjI1fQ.ze3DdiF4kUqHMBx6DPl1BKStzKgnlTHl4mk0tMyUPgM"}
+{"token":"eyJhb..."}
 ```
 
 2) copy token and get data from `default` namespace:
 ```
-
+curl -H "Authorization: eyJhb..."  http://localhost:8080/deployments/default/
 ```
+
+Response:
+```
+[
+    {
+        "name": "nginx",
+        "dockerImage": "nginx",
+        "replica": 1,
+        "port": 80
+    },
+    {
+        "name": "httpbin",
+        "dockerImage": "docker.io/citizenstig/httpbin",
+        "replica": 1,
+        "port": 8000
+    }
+]
+```
+
+3) get detailed information about service:
+```
+curl -H "Authorization: eyJhb"  http://0.0.0.0:8080/deployments/default/nginx
+```
+
+4) create service(requires `admin` access token)
+```
+curl -H "Authorization: eyJhb"  http://localhost:8080/deployments/default/nginx
+```
+
+5) 

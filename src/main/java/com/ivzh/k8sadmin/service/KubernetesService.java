@@ -12,12 +12,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component(Constants.AdminServiceFunctionality.K8S)
-public class KubernetesServiceImpl implements KubernetesOperations {
+public class KubernetesService implements KubernetesOperations {
 
     private final KubernetesClient client;
 
-    public KubernetesServiceImpl() {
-                    
+    public KubernetesService() {
+        System.setProperty("kubernetes.auth.tryKubeConfig", "true");
+        System.setProperty("kubeconfig", "D:\\Users\\ivan.zhuravel\\Downloads\\config");
+        System.setProperty("kubernetes.auth.tryServiceAccount", "false");
         this.client = new DefaultKubernetesClient();
     }
 
@@ -30,14 +32,14 @@ public class KubernetesServiceImpl implements KubernetesOperations {
                 .list()
                 .getItems()
                 .stream()
-                .map(DeploymentDto::of)
+                .map(DeploymentDto::new)
                 .collect(Collectors.toSet());
     }
 
     @Override
     public DeploymentDto get(String namespace, String deployment) {
         Deployment deploymentDescriptor = client.apps().deployments().inNamespace(namespace).withName(deployment).get();
-        return DeploymentDto.of(deploymentDescriptor);
+        return new DeploymentDto(deploymentDescriptor);
     }
 
     @Override
@@ -68,6 +70,6 @@ public class KubernetesServiceImpl implements KubernetesOperations {
                 .endSpec()
                 .build();
 
-        return DeploymentDto.of(client.apps().deployments().inNamespace(namespace).createOrReplace(deployment));
+        return new DeploymentDto(client.apps().deployments().inNamespace(namespace).createOrReplace(deployment));
     }
 }

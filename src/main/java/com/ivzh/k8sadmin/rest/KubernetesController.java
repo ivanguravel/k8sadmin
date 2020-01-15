@@ -28,7 +28,7 @@ public class KubernetesController {
     }
 
     @PostMapping
-    public DeploymentDto dto(@PathVariable("namespace") String namespace, @RequestBody DeploymentDto dto, @RequestParam(name = "useStorage", required = false) boolean doUseStorage) {
+    public DeploymentDto create(@PathVariable("namespace") String namespace, @RequestBody DeploymentDto dto, @RequestParam(name = "useStorage", required = false) boolean doUseStorage) {
         return facade.create(namespace, dto, doUseStorage);
     }
 }

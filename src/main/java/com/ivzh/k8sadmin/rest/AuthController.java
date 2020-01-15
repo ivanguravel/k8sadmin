@@ -21,7 +21,7 @@ import java.util.Map;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/signin")
 public class AuthController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class AuthController {
     @Autowired
     UserRepository users;
 
-    @PostMapping("/signin")
+    @PostMapping
     public ResponseEntity signin(@RequestBody AuthRequestDto dto) {
 
         try {

@@ -34,8 +34,5 @@ public class AppInitializer implements CommandLineRunner {
                 .roles(Arrays.asList("ROLE_USER", "ROLE_ADMIN"))
                 .build()
         );
-
-        log.debug("printing all users...");
-        this.users.findAll().forEach(v -> log.debug(" User :" + v.toString()));
     }
 }

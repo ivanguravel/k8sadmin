@@ -21,7 +21,7 @@ public class KubernetesFacade {
     }
 
     public DeploymentDto get(String namespace, String deployment, boolean doUseStorage) {
-        return getKubernetesServiceByCondition(doUseStorage).get(deployment, namespace);
+        return getKubernetesServiceByCondition(doUseStorage).get(namespace, deployment);
     }
 
     public DeploymentDto create(String namespace, DeploymentDto dto, boolean doUseStorage) {

@@ -34,11 +34,9 @@ public class JwtTokenAuthenticationFilter extends GenericFilterBean {
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
-        } else if (!((HttpServletRequest) req).getServletPath().contains("auth/signin")) {
-            throw new AccessDeniedException("can't authorize user");
-        } else {
-            filterChain.doFilter(req, res);
         }
-    }
 
+        filterChain.doFilter(req, res);
+
+    }
 }

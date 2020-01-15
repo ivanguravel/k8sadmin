@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import java.io.Serializable;
+import java.nio.file.AccessDeniedException;
 
 @RestControllerAdvice
 @Slf4j
@@ -26,7 +27,7 @@ public class RestExceptionHandler {
     }
 
     @Order(Integer.MIN_VALUE)
-    @ExceptionHandler(value = {BadCredentialsException.class})
+    @ExceptionHandler(value = {BadCredentialsException.class, AccessDeniedException.class})
     public ResponseEntity<ErrorInfo> handlerLogin(Exception e, WebRequest request) {
         log.debug(String.format("Handling...", e.getMessage()));
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorInfo(e.getMessage()));
