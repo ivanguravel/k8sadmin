@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 
 @WebFilter
-@Order(1)
+//@Order(1)
 public class JwtTokenAuthenticationFilter extends GenericFilterBean {
 
     private JwtTokenProvider jwtTokenProvider;
