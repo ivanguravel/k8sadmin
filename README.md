@@ -73,7 +73,18 @@ curl -H "Authorization: eyJhb..."  http://0.0.0.0:8080/deployments/default/nginx
 
 #### 4) create service(requires `admin` access token)
 ```
-curl -H "Authorization: eyJhb..."  http://localhost:8080/deployments/default/nginx
+curl -X POST http://localhost:8080/deployments/default/nginx -H "Content-Type:application/json" -d "{\"name\":\"nginx\", \"dockerImage\":\"nginx\", "replica":1, \"port\":80}"
 ```
 
-#### 5) 
+#### 5) for persisting data to h2 db add frag `?useStorage=true` to each query. 
+For create - it creates service in k8s and save original config into h2. 
+get queries are reading data from h2(return origin configs of created deployments)
+
+### Tests: 
+could be executed from ide
+
+### Known issues:
+0) fix test execution from mvn side
+1) for `AWS EKS` probably need to install `aws iam authentificator` to the docker image. I tested on the `Azure AKS` 
+2) need to enhance `GET` endpoint for reading detailed info about service
+3) write more tests

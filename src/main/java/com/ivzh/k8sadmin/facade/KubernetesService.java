@@ -1,4 +1,4 @@
-package com.ivzh.k8sadmin.service;
+package com.ivzh.k8sadmin.facade;
 
 import com.ivzh.k8sadmin.dto.DeploymentDto;
 import com.ivzh.k8sadmin.util.Constants;
@@ -17,9 +17,6 @@ public class KubernetesService implements KubernetesOperations {
     private final KubernetesClient client;
 
     public KubernetesService() {
-        System.setProperty("kubernetes.auth.tryKubeConfig", "true");
-        System.setProperty("kubeconfig", "D:\\Users\\ivan.zhuravel\\Downloads\\config");
-        System.setProperty("kubernetes.auth.tryServiceAccount", "false");
         this.client = new DefaultKubernetesClient();
     }
 

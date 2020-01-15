@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "762dff73-ade3-4a70-b1aa-3bd17ecd8298",
+		"name": "k8sadmin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/auth/signin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"username\": \"admin\",\n   \"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/deployments/default",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTU3OTEwMzQyNiwiZXhwIjoxNTc5MTA3MDI2fQ.SRv9zeBiLfVcFRu19GS8IvdaMK7UJ5VeAhd5DfL_H_M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/deployments/default",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"deployments",
+						"default"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/deployments/default/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNTc5MTEyMTgzLCJleHAiOjE1NzkxMTU3ODN9.cVnOdbC38rbQCZaT0hOw_MFGCXk04ZCh9KLMI_mRQDc",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"nginx\",\r\n    \"dockerImage\": \"nginx\",\r\n    \"replica\": 1,\r\n    \"port\": 80\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/deployments/default/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"deployments",
+						"default",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

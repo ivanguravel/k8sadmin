@@ -6,6 +6,7 @@ import com.ivzh.k8sadmin.util.Utils;
 import io.fabric8.kubernetes.api.model.Container;
 import io.fabric8.kubernetes.api.model.ContainerPort;
 import io.fabric8.kubernetes.api.model.apps.Deployment;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,10 @@ public class DeploymentDto {
     private String dockerImage;
     private Integer replica;
     private Integer port;
+
+    public DeploymentDto(String name) {
+        this.name = name;
+    }
 
     public DeploymentDto(Deployment deployment) {
         this.name = deployment.getMetadata().getName();

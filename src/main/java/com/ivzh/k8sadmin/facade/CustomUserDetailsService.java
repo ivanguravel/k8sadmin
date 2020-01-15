@@ -1,4 +1,4 @@
-package com.ivzh.k8sadmin.service;
+package com.ivzh.k8sadmin.facade;
 
 import com.ivzh.k8sadmin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
