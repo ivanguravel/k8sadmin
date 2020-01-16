@@ -81,10 +81,9 @@ For create - it creates service in k8s and save original config into h2.
 get queries are reading data from h2(return origin configs of created deployments)
 
 ### Tests: 
-could be executed from ide
+`mvn verify`
 
 ### Known issues:
-0) fix test execution from mvn side
 1) for `AWS EKS` probably need to install `aws iam authentificator` to the docker image. I tested on the `Azure AKS` 
 2) need to enhance `GET` endpoint for reading detailed info about service
 3) write more tests

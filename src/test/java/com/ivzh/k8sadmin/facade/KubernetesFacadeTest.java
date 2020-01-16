@@ -22,23 +22,11 @@ public class KubernetesFacadeTest {
 
     private static final String NAMESPACE = "ns";
     private static final String NAME = "nginx";
-    private static final String NAME1 = "nginx1";
     private static final String FROM_K8S = "k8s";
     private static final String FROM_DB = "db";
 
     @TestConfiguration
     static class TestContextConfiguration {
-
-        @Bean(name = Constants.AdminServiceFunctionality.K8S)
-        public KubernetesService k8sService() {
-            return new KubernetesService();
-        }
-
-        @Bean(name = Constants.AdminServiceFunctionality.DB)
-        public StoredDeploymentService storedDeploymentService() {
-            return new StoredDeploymentService();
-        }
-
         @Bean
         public KubernetesFacade facade() { return new KubernetesFacade(); }
     }
@@ -46,9 +34,9 @@ public class KubernetesFacadeTest {
     @Autowired
     private KubernetesFacade facade;
 
-    @MockBean
+    @MockBean(name = Constants.AdminServiceFunctionality.K8S)
     private KubernetesService k8sService;
-    @MockBean
+    @MockBean(name = Constants.AdminServiceFunctionality.DB)
     private StoredDeploymentService storedDeploymentService;
 
     DeploymentDto k8s = new DeploymentDto(FROM_K8S);
@@ -58,11 +46,12 @@ public class KubernetesFacadeTest {
     @Before
     public void setUp() {
         Mockito.when(k8sService.get(NAMESPACE, NAME)).thenReturn(k8s);
-        Mockito.when(k8sService.get(NAMESPACE, NAME1)).thenReturn(db);
+        Mockito.when(storedDeploymentService.get(NAMESPACE, NAME)).thenReturn(db);
     }
 
     @Test
     public void testLogicOfChoosingImplementation() {
         assertEquals(FROM_K8S, facade.get(NAMESPACE, NAME, false).getName());
+        assertEquals(FROM_DB, facade.get(NAMESPACE, NAME, true).getName());
     }
 }
