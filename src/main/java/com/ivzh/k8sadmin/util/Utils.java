@@ -9,10 +9,6 @@ public class Utils {
     private Utils () {}
 
     public static <T> T getFirstOrDefault(@NotNull Iterable<T> iterable, @NotNull T defaultValue) {
-        if (Objects.isNull(defaultValue)) {
-            return defaultValue;
-        }
-
         Iterator<T> iterator = iterable.iterator();
         if (iterator.hasNext()) {
             return iterator.next();
