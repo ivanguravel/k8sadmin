@@ -18,7 +18,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<k8s.client>4.7.0</k8s.client>
+		<k8s.client>4.7.2</k8s.client>
 		<jsonwebtoken>0.8.0</jsonwebtoken>
 		<h2>2.1.210</h2>
 		<junit>1.5.2</junit>
